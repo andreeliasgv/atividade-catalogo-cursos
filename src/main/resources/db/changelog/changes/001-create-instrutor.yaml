@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-instrutor
+      author: andre
+      changes:
+        - createTable:
+            tableName: instrutor
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nome
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(160)
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            tableName: instrutor
+            columnNames: email
+            constraintName: uk_instrutor_email
+      rollback:
+        - dropTable:
+            tableName: instrutor
